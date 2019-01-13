@@ -22,7 +22,7 @@ describe('Rule 1', () => {
   describe('Scenario 1 - Check the function', () => {
     it('Scenario 1 - input and output are object type', () => {
       const obj = getObjDataByConfig();
-      const result = rule(obj);
+      const result = rule()(obj);
 
       expect(result).toEqual({
         url: 'http://www.aroundyourlife.com/test',
@@ -39,7 +39,7 @@ describe('Rule 1', () => {
     const obj = getObjDataByConfig({
       url: 'http://www.aroundyourlife.com/domain/users',
     });
-    const result = rule(obj);
+    const result = rule()(obj);
 
     it('Update URL path name /api/domain/users instead of /domain/users', () => {
       expect(result.url).toBe('http://www.aroundyourlife.com/api/domain/users');
@@ -57,7 +57,7 @@ describe('Rule 1', () => {
         method: POST,
         url,
       });
-      const result = rule(obj);
+      const result = rule()(obj);
 
       expect(result.url).toBe(url);
       expect(result.method).toBe(POST);
@@ -69,7 +69,7 @@ describe('Rule 1', () => {
         method: PUT,
         url,
       });
-      const result = rule(obj);
+      const result = rule()(obj);
 
       expect(result.url).toBe(url);
       expect(result.method).toBe(PUT);
@@ -81,7 +81,7 @@ describe('Rule 1', () => {
         method: DELETE,
         url,
       });
-      const result = rule(obj);
+      const result = rule()(obj);
 
       expect(result.url).toBe(url);
       expect(result.method).toBe(DELETE);
