@@ -44,5 +44,9 @@ describe('Rule 1', () => {
     it('Update URL path name /api/domain/users instead of /domain/users', () => {
       expect(result.url).toBe('http://www.aroundyourlife.com/api/domain/users');
     });
+
+    it('Execute the function if method is GET', () => {
+      expect(result.method).toBe(GET);
+    });
   });
 });
