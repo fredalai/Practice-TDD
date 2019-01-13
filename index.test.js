@@ -1,7 +1,7 @@
 const constants = require('./constants');
 const rule = require('./index');
 
-const { GET } = constants;
+const { GET, POST } = constants;
 const getObjDataByConfig = (config = {}) => {
   const obj = {
     url: 'http://www.aroundyourlife.com/test',
@@ -47,6 +47,20 @@ describe('Rule 1', () => {
 
     it('Execute the function if method is GET', () => {
       expect(result.method).toBe(GET);
+    });
+  });
+
+  describe('Scenario 3 - Check POST/PUT/DELETE method should not be execute main task', () => {
+    it('Should not be execute main task if method is POST', () => {
+      const url = 'http://www.aroundyourlife.com/domain/users';
+      const obj = getObjDataByConfig({
+        method: POST,
+        url,
+      });
+      const result = rule(obj);
+
+      expect(result.url).toBe(url);
+      expect(result.method).toBe(POST);
     });
   });
 });
