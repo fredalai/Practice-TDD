@@ -109,5 +109,19 @@ describe('Rule 1', () => {
       expect(result.url).toBe('http://www.aroundyourlife.com/api/domain/users');
       expect(result).toEqual(obj);
     });
+
+    it('Allow execute main task if config method is multiple type', () => {
+      const method = PUT;
+      const url = 'http://www.aroundyourlife.com/api/domain/users';
+      const obj = getObjDataByConfig({
+        method,
+        url: 'http://www.aroundyourlife.com/domain/users',
+      });
+      const config = { method: [DELETE, GET, POST, PUT] };
+      const result = rule(config)(obj);
+
+      expect(result.method).toBe(method);
+      expect(result.url).toBe(url);
+    });
   });
 });
