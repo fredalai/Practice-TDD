@@ -97,5 +97,17 @@ describe('Rule 1', () => {
 
       expect(result).toEqual(obj);
     });
+
+    it('Allow execute main task if config method is POST', () => {
+      const obj = getObjDataByConfig({
+        method: POST,
+        url: 'http://www.aroundyourlife.com/domain/users',
+      });
+      const config = { method: [POST] };
+      const result = rule(config)(obj);
+
+      expect(result.url).toBe('http://www.aroundyourlife.com/api/domain/users');
+      expect(result).toEqual(obj);
+    });
   });
 });
