@@ -87,4 +87,15 @@ describe('Rule 1', () => {
       expect(result.method).toBe(DELETE);
     });
   });
+
+  describe('Scenario 4 - Add customize config', () => {
+    it('Allow execute main task if config is empty obj', () => {
+      const obj = getObjDataByConfig();
+      const config = {};
+      const ruleWithConfig = rule(config);
+      const result = ruleWithConfig(obj);
+
+      expect(result).toEqual(obj);
+    });
+  });
 });
