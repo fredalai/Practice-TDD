@@ -123,5 +123,15 @@ describe('Rule 1', () => {
       expect(result.method).toBe(method);
       expect(result.url).toBe(url);
     });
+
+    it('Allow pass execute main task if config method is empty array', () => {
+      const url = 'http://www.aroundyourlife.com/domain/users';
+      const obj = getObjDataByConfig({ url });
+      const config = { method: [] };
+      const result = rule(config)(obj);
+
+      expect(result.method).toBe(GET);
+      expect(result.url).toBe(url);
+    });
   });
 });
