@@ -1,7 +1,7 @@
 const constants = require('./constants');
 const rule = require('./index');
 
-const { GET, POST } = constants;
+const { DELETE, GET, POST, PUT } = constants;
 const getObjDataByConfig = (config = {}) => {
   const obj = {
     url: 'http://www.aroundyourlife.com/test',
@@ -61,6 +61,30 @@ describe('Rule 1', () => {
 
       expect(result.url).toBe(url);
       expect(result.method).toBe(POST);
+    });
+
+    it('Should not be execute main task if method is PUT', () => {
+      const url = 'http://www.aroundyourlife.com/domain/users';
+      const obj = getObjDataByConfig({
+        method: PUT,
+        url,
+      });
+      const result = rule(obj);
+
+      expect(result.url).toBe(url);
+      expect(result.method).toBe(PUT);
+    });
+
+    it('Should not be execute main task if method is DELETE', () => {
+      const url = 'http://www.aroundyourlife.com/domain/users';
+      const obj = getObjDataByConfig({
+        method: DELETE,
+        url,
+      });
+      const result = rule(obj);
+
+      expect(result.url).toBe(url);
+      expect(result.method).toBe(DELETE);
     });
   });
 });
