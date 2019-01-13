@@ -1,9 +1,11 @@
+const constants = require('./constants');
 const rule = require('./index');
 
+const { GET } = constants;
 const getObjDataByConfig = (config = {}) => {
   const obj = {
     url: 'http://www.aroundyourlife.com/test',
-    method: 'GET',
+    method: GET,
     headers: {
       Cookie: 'name=value; name2=value2',
       'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ describe('Rule 1', () => {
 
   it('Scenario 2 - Update URL path name /api/domain/users instead of /domain/users', () => {
     const obj = getObjDataByConfig({
-      url: 'http://www.aroundyourlife.com/domain/users'
+      url: 'http://www.aroundyourlife.com/domain/users',
     });
     const result = rule(obj);
 
