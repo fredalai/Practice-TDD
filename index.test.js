@@ -133,5 +133,35 @@ describe('Rule 1', () => {
       expect(result.method).toBe(GET);
       expect(result.url).toBe(url);
     });
+
+    it('Allow update pathname task when URL pathname equal config.pathname', () => {
+      const url = 'http://www.aroundyourlife.com/api/domain/users';
+      const obj = getObjDataByConfig({
+        url: 'http://www.aroundyourlife.com/domain/users',
+      });
+      const config = {
+        method: [GET],
+        pathname:  '/domain/users',
+        newPathname: '/api/domain/users',
+      };
+      const result = rule(config)(obj);
+
+      expect(result.method).toBe(GET);
+      expect(result.url).toBe(url);
+    });
+
+    it('Skip to update pathname task when URL pathname equal config.pathname', () => {
+      const url = 'http://www.aroundyourlife.com/domain/users';
+      const obj = getObjDataByConfig({ url });
+      const config = {
+        method: [GET],
+        pathname:  '/user/devices',
+        newPathname: '/api/user/devices',
+      };
+      const result = rule(config)(obj);
+
+      expect(result.method).toBe(GET);
+      expect(result.url).toBe(url);
+    });
   });
 });
