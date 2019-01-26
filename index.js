@@ -11,6 +11,16 @@ module.exports = function (config) {
         return data;
       }
 
+      if (config.pathname && config.newPathname) {
+        if (urlObj.pathname !== config.pathname) {
+          return data;
+        }
+
+        urlObj.pathname = config.newPathname;
+        data.url = url.format(urlObj);
+        return data;
+      }
+
       if (urlObj.pathname !== '/domain/users') {
         return data;
       }
