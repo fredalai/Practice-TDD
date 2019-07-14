@@ -9,6 +9,7 @@
   "author": "fredalai00@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "lodash": "^4.17.14"
   }
 }
